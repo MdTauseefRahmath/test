@@ -7,20 +7,26 @@
 
 \f0\fs48 \cf0 Git commands\
 \
-When we do GIT clone we basically get the entire git repository like history, commits and latest files. It will be in the project directory under hidden file .gits\
-1. git add (file names)\
+When we do GIT clone we basically get the entire git repository like history, commits and latest files. It will be in the project directory under hidden file .git\
+1. git add <file name> (Adds the file(s) to the staging area)\
 2. git commit -m (message for commit)\
 3. git status\
 4. git log\
 5. git diff commitID1 commitID2 (shows the files and the lines of difference between the specified two commitsId\'92s)\
-5. Git checkout commitID (checksout all the code for the specified commitId from the repository and places it in your project).\
-\
+5. git checkout commitID (checksout all the code for the specified commitId from the repository and places it in your project).\
+6. git status -s (Used to check the status but in short form)\
+7. git restore --staged <filename> (Restores the file from the staging area and marks it as new untracked file).\
 \
 Steps:\
 1) git init (initialise an empty git repository and adds a .git file to the project)\
 2) write code in the project.\
-3) git add . (Thiss command adds the file to the staging area)\
+3) git add . (This command adds the file to the staging area)\
 4) git commit -m \'93first commit\'94.\
 5) git remote add origin https://github.com/MdTauseefRahmath/test.git (To connect our local repository to the GitHub. Acts as a link to push and pull).\
-6) git push -u origin master\
+6) git push -u origin master.\
+\
+Origin: Origin is the repository version that sits in the GITHUB profile.\
+Master: The default branch that gets created is the Master Branch. When we initialise a GIT repository a branch is created called Master.\
+\
+\
 }
