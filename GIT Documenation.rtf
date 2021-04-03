@@ -15,7 +15,15 @@ When we do GIT clone we basically get the entire git repository like history, co
 5. git diff commitID1 commitID2 (shows the files and the lines of difference between the specified two commitsId\'92s)\
 5. git checkout commitID (checksout all the code for the specified commitId from the repository and places it in your project).\
 6. git status -s (Used to check the status but in short form)\
+	Staged    Modified   FileName\
+	   M                             File 1      (means Modified file in the staging area)\
+	   M 				M			 File 2	   (means Modified in the staging area as well as in the Working Directory)\
+	   A							 File 3      (new file added to the staging area)\
+	   ?				?			 File 4 	   (new file created but not yet being tracked)\
 7. git restore --staged <filename> (Restores the file from the staging area and marks it as new untracked file).\
+8. git diff --staged (Compares our staged changes to the last committed snapshot. Changes made that are ready to be committed)\
+9. git commit -a -m \'93commit message\'94(stages all the changes in the working directory that are being tracked by GIT. This way we can skip the git add option)\
+\
 \
 Steps:\
 1) git init (initialise an empty git repository and adds a .git file to the project)\
@@ -27,6 +35,26 @@ Steps:\
 \
 Origin: Origin is the repository version that sits in the GITHUB profile.\
 Master: The default branch that gets created is the Master Branch. When we initialise a GIT repository a branch is created called Master.\
+\
+Important Point:\
+There is a possibility that you have staged a file say a.txt which has some contents. Now if do (git status) we get the following result.\
+Changes to be committed.\
+	modified: 	a.txt\
+\
+Now if we have modified the contents of this staged file a.txt and added the did (git status) we get the following result.\
+Changes to be committed.\
+	modified: 	a.txt\
+Changes not staged for commit\
+	modified: 	a.txt\
+\
+As we see that the files a.txt is both in the staging area and modified section. Now if commit the file only the contents of the staged file gets committed.\
+\
+\
+\
+\
+\
+\
+\
 \
 \
 }
