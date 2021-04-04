@@ -24,11 +24,12 @@ When we do GIT clone we basically get the entire git repository like history, co
 8. git diff --staged (Compares our staged changes to the last committed snapshot. Changes made that are ready to be committed)\
 9. git commit -a -m \'93commit message\'94(stages all the changes in the working directory that are being tracked by GIT. This way we can skip the git add option)\
 10. git rm <file Name> (Tells GIT to stop tracking this file, and then we need to commit and push the changes to remove the file.)\
-11. git rm --cached <file Name> (Tells GIT to stop tracking it but we can still have the file)\
+11. git rm --caches <file Name> (Tells GIT to stop tracking it but we can still have the file)\
 12. git mv <File Name1> <File Name2> (Renames file from 1 to 2)\
-13. git branch <branchName> (Creates a new branch)\
-13. git checkout -b <branchName> (Creates a new branch from the master brach and checkout to it)\
-14. git checkout master (Checkout to the master branch)\
+13. git stash (to stash changes to temporary place)\
+14. git stash list (provides a list of WIP changes that we have stashed)\
+15. git stash show (shows us a detailed view of the stash changes)\
+16. git clone <url> (url is the GitHub URL)\
 \
 Steps:\
 1) git init (initialise an empty git repository and adds a .git file to the project)\
@@ -42,7 +43,8 @@ Origin: Origin is the repository version that sits in the GITHUB profile.\
 Master: The default branch that gets created is the Master Branch. When we initialise a GIT repository a branch is created called Master.\
 \
 Important Points:\
-1) There is a possibility that you have staged a file say a.txt which has some contents. Now if do (git status) we get the following result.\
+\
+There is a possibility that you have staged a file say a.txt which has some contents. Now if do (git status) we get the following result.\
 Changes to be committed.\
 	modified: 	a.txt\
 \
@@ -54,14 +56,15 @@ Changes not staged for commit\
 \
 As we see that the files a.txt is both in the staging area and modified section. Now if commit the file only the contents of the staged file gets committed.\
 \
-2) git checkout -b new_branch (Creates and we get checkout to the new_branch. Now if we do a (git status) we will get the status that will include all the stashed and untracked files (if any) were present in the master branch at the time of creating the new_branch)\
-3) git checkout master (to go back to the main branch. This command will give an error (if any) we have some untracked file in this branch and will not checkout the branch.)\
+Merge in GIT:\
+To merge a new change that you have made in the new_branch into the master branch. Do the following\
+1) git checkout master (You need to be in the master branch first to merge all your changes)\
+2) git merge new_branch\
 \
-Now if we still want to checkout the master branch but don\'92t want to commit or remove the file from the new_branch then we should do the following steps\
-4) git add .\
-5) git stash (This will stash the all the changes of the working directory and staging area and goes back to the clean working directory)\
-\
-\
+Stash in GIT:\
+1) Master has branch a file a.txt\
+2) A new_branch has been created from the master. Now if add a new file in the new_branch say b.txt and now if we try to checkout to the master branch we get an error asking us to commit or stash our changes before switching the branch.\
+3) Now if we want to switch branches without committing or removing our changes we have to use (git stash) command.\
 \
 \
 \
