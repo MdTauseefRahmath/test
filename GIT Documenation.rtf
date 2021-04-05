@@ -77,14 +77,80 @@ When we commit a file a master branch is automatically created by the GIT. If we
 \
 Now if we create a new_branch then in the above folder a new file new_branch will be added. This will have the same contents as the master.\
 \
-HEAD: The .git folder has a file HEAD which will have the information which is maintained by GIT to know which branch we are currently pointing to.\
+HEAD: It is just a reference to a branch. The .git folder has a file HEAD which will have the information which is maintained by GIT to know which branch we are currently pointing to.\
 Command: cat .git/HEAD\
 \
 Git object have:\
-1) Blobs\
-2) Trees\
+1) Blob: Content of a file in GIT. Now if we want to check its contents use the following command.\
+ git cat-file <commitId> -p\
+2) Tree: Directory stores in a GIT.\
 3) Commits\
 4) Tags\
+\
+Example project structure:\
+	\'97Menu.txt\
+	\'97recipes\
+			|\'97ReadMe.txt\
+			|\'97apple.txt\
+\
+Now if we commit we get the commitId 1177 and check it using the command (git cat-file -p 1177) get the following output. This means this is pointing to the root of the tree. The file name and the file permissions are not stored in the blob they are stored in the tree that points to the blob.\
+ 			tree be4d\
+In this case the commit is pointing to the root directory of the project.\
+			1177 -> be4d\
+Now if check the contents of the tree using the command (git cat-file -p be4d) get the following output.\
+			blob 2399 menu.txt\
+			tree 3ee7 recepies\
+Now if we want to check the contents of a blob 2399 use the command (git cat-file -p 2399) we get the output\
+			Apple Pie.\
+						recepies/			    ReadMe.txt\
+					 |\'97\'97\'97\'97\'97> 3ee7 \'97\'97\'97\'97\'97> 361a (somedata) \
+1177 -> be4d |						|(Apple Pie)\
+					 |\'97\'97\'97\'97\'97> 2399 \
+						menu.txt	(Apple Pie)\
+Branching in GIT:\
+1) Say we have a master branch and a newly created branch new_branch. We have checkout to master.\
+	Head -> master-> 5720 <- new_branch\
+								  |\
+				 			  1170\
+2) Now if we made some changes to the file and commit them. Then we see something like this. Now even if we check the contents of HEAD it will be still referring to Master.\
+	Head -> master-> e268\
+								  |\
+				 			  5720  <- new_branch\
+								 |\
+							  1170\
+3) Now if checkout to new_branch. It dose 2 things\
+	-> Moves the HEAD.\
+	-> Updates the working are.\
+				master-> e268\
+								  |\
+				 			  5720  <- new_branch <- HEAD\
+								 |\
+							  1170\
+4) Now if we make changes to the files of new_branch and commit we can see the following.\
+				master-> e268			           007f <- new_branch <- HEAD\
+								  |_______ _______|\
+				 			  					|\
+											5720  \
+								 				|\
+							  				1170\
+5) checkout the master branch.\
+HEAD	-> master-> e268			           007f <- new_branch\
+								  |_______ _______|\
+				 			  					|\
+											5720  \
+								 				|\
+							  				1170\
+6) Now if we try to merge we will see the following. See the same by using the command.\
+ git cat-file -p commitId\
+			HEAD	-> master->  ecbe\
+								  _______|_______\
+								 |				              |\
+							 e268			           007f <- new_branch\
+								  |_______ _______|\
+				 			  					|\
+											5720  \
+								 				|\
+							  				1170\
 \
 \
 \
