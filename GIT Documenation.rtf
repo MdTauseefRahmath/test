@@ -30,6 +30,7 @@ When we do GIT clone we basically get the entire git repository like history, co
 14. git stash list (provides a list of WIP changes that we have stashed)\
 15. git stash show (shows us a detailed view of the stash changes)\
 16. git clone <url> (url is the GitHub URL)\
+17. git cat-file -p <commitId> (used to check the contents of a file)\
 \
 Steps:\
 1) git init (initialise an empty git repository and adds a .git file to the project)\
@@ -66,6 +67,24 @@ Stash in GIT:\
 2) A new_branch has been created from the master. Now if add a new file in the new_branch say b.txt and now if we try to checkout to the master branch we get an error asking us to commit or stash our changes before switching the branch.\
 3) Now if we want to switch branches without committing or removing our changes we have to use (git stash) command.\
 \
+Basic concepts of GIT:\
+Git at its core is a MAP that maps Keys and Value Pairs. It calculates Key and Value using the SHA1Algorithm.\
+Git save the data in the .git -> objects -> the folder name is the first two letters of the hash generated and the file name are the remaining letters of the hash.\
+\
+Branch: It is just a reference to a commit.\
+\
+When we commit a file a master branch is automatically created by the GIT. If we check the contents of the file it will just have the hash of the latest commit. It is located in .git -> refs -> heads -> master\
+\
+Now if we create a new_branch then in the above folder a new file new_branch will be added. This will have the same contents as the master.\
+\
+HEAD: The .git folder has a file HEAD which will have the information which is maintained by GIT to know which branch we are currently pointing to.\
+Command: cat .git/HEAD\
+\
+Git object have:\
+1) Blobs\
+2) Trees\
+3) Commits\
+4) Tags\
 \
 \
 \
